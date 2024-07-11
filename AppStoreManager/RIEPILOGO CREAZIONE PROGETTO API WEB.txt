@@ -1,0 +1,60 @@
+RIEPILOGO CREAZIONE PROGETTO API WEB
+
+- Creare un progetto Asp.NET Core Web API
+- DA Nuget:
+* Installare Microsoft.EntityFrameworkCore.Tools v8.0.2
+* Installare Microsoft.EntityFrameworkCore.SqlServer v8.0.2
+* 
+Nella Cartella Data:
+* Creare il nuovo NOME_DbContext che eredita da DbContext
+* Creare il costruttore standard con il parametro DbContextOptions tipizzato sulla classe attuale
+* 
+* Creare le classi relative alle entità (tabelle) del database con le relative relazioni
+
+* In ogni classe prevedere un campo Id costruito secondo lo schema "ClassNameId" (Es: StudentId)
+* In ogni classe con una relazione 1 a n, inserire anche il campo Id della foreign key (Es: CourseId in Student)
+* Aggiungere ogni entità così creata come DbSet al DbContext
+* 
+* CONFIGURAZIONE
+* Inserire la connection string nel file appsettings.json
+* Es:
+*   "ConnectionStrings": {
+        "Default": "Server=localhost;Database=UniDbWeb;Integrated Security=SSPI;TrustServerCertificate=True"
+    },
+* 
+* Inserire nella program la dependency injection del sqlserver
+* Es:
+*   string connStr = builder.Configuration.GetConnectionString("Default");
+    builder.Services.AddSqlServer<UniDbContext>(connStr);
+* 
+* -------------------------------------------------------------------------------------
+* 
+* MIGRATIONS & DB
+* Dal Package Manager Console (Tools => NuGet Package Manager => Package Manager Console)
+* Creare la prima migrazione con il comando "add-migration {NAME}", assegnare a {NAME} un nome sensato
+* Applicare le modifiche al database, così creandolo, con il comando "update-database"
+* 
+* -------------------------------------------------------------------------------------
+* 
+* MAPPER
+* 
+* Creare una classe NON statica che contenga tutti i metodi di mappatura tra entità e modelli
+* Aggiungere la classe mapper come Singleton per la dependency injection
+* Es:
+*   builder.Services.AddSingleton<Mapper>();
+* 
+*/
+
+CONTROLLER
+- Ricordarsi di inserire sempre il costruttore con tutti i servizi necessari al buon funzionamento, con la corrispettiva proprietà private readonly interna.
+Es:
+private readonly MoviesDbContext _ctx;
+private readonly Mapper _mapper;
+private readonly ILogger<MovieController> _logger;
+
+public MovieController(MoviesDbContext ctx, Mapper mapper, ILogger<MovieController> logger)
+{
+    _ctx = ctx;
+    _mapper = mapper;
+    _logger = logger;
+}
