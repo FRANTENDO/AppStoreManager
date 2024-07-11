@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>My App Store</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index6.html" data-category="games">Home</a></li>
+                    <li><a href="index2.html" data-category="social">Contatti</a></li>
+                    <li><a href="index3.html" data-category="messaging">Social</a></li>
+                    <li>
+                        <input type="text" id="search" placeholder="Search...">
+                        <button id="confirm-button">Confirm</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <section class="apps">
+                        <h2>APP DISPONIBILI :</h2>
+                        <br>
+                        <div class="category">
+                            <h3>Giochi :</h3><br>
+                            <p class="app-item"><img src="images/cr.jpg" alt="Clash Royale" class="app-icon"> Clash Royale</p>
+                            <p class="app-item"><img src="images/bs.jpg" alt="Brawl Stars" class="app-icon"> Brawl Stars</p>
+                            <p class="app-item"><img src="images/bh.jpg" alt="Brawlhalla" class="app-icon"> Brawlhalla</p>
+                        </div>
+                        <br>
+                        <div class="category">
+                            <h3>Social :</h3><br>
+                            <p class="app-item"><img src="images/ig.jpg" alt="Instagram" class="app-icon"> Instagram</p>
+                            <p class="app-item"><img src="images/fb.jpg" alt="Facebook" class="app-icon"> Facebook</p>
+                        </div>
+                        <br>
+                        <div class="category">
+                            <h3>Messagistica :</h3><br>
+                            <p class="app-item"><img src="images/wa.jpg" alt="Whatsapp" class="app-icon"> Whatsapp</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col">
+                    <section class="installed-apps">
+                        <h2>APP INSTALLATE :</h2>
+                        <br>
+                        <div class="category">
+                            <h3>Giochi :</h3><br>
+                            <p class="app-item"><img src="images/mc.jpg" alt="Minecraft" class="app-icon"> Minecraft</p>
+                            <p class="app-item"><img src="images/coc.jpeg" alt="Clash Of Clans" class="app-icon"> Clash Of Clans</p>
+                            <p class="app-item"><img src="images/rblx.png" alt="Roblox" class="app-icon"> Roblox</p>
+                        </div>
+                        <br>
+                        <div class="category">
+                            <h3>Social :</h3><br>
+                        </div>
+
+                        <div class="category">
+                            <h3>Messagistica :</h3><br>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div id="search-result-bottom" class="row">
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My App Store. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

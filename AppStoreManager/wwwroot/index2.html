@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>My App Store</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index6.html" data-category="games">Home</a></li>
+                    <li><a href="index2.html" data-category="social">Contatti</a></li>
+                    <li><a href="index3.html" data-category="messaging">Social</a></li>
+                    <li>
+                        <input type="text" id="search" placeholder="Search...">
+                        <button id="confirm-button">Confirm</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="contact-header">
+            <h2>Contact Us</h2>
+        </div>
+        <form id="contact-form" class="contact-form">
+            <div class="form-group">
+                <label for="name" class="contact-form-label text-white">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email" class="contact-form-label text-white">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message" class="contact-form-label text-white">Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Enter your message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+            <div id="form-response" class="mt-3"></div>
+        </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My App Store. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
