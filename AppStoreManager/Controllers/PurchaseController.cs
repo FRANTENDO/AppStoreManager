@@ -44,5 +44,41 @@ namespace AppStoreManager.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "OPS, MI SI è ROTTO IL SERVER");
             }
         }
+
+        [HttpPut]
+        public IActionResult Put(PurchaseModel purchase)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Not a valid model");
+            }
+
+            var existingPurchase = _ctx.Purchases.Where(pu => pu.AppCatalogueId == purchase.AppCatalogueId && pu.StoreUserId == purchase.StoreUserId).FirstOrDefault();
+            if (existingPurchase != null)
+            {
+                existingPurchase.CreatedAt = purchase.CreatedAt;
+
+                _ctx.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var purchase = _ctx.Purchases.Find(id);
+            if (purchase == null)
+            {
+                return NotFound();
+            }
+
+            _ctx.Purchases.Remove(purchase);
+            _ctx.SaveChanges();
+            return Ok("Elemento eliminato correttamente");
+        }
     }
 }

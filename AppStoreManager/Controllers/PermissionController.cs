@@ -44,5 +44,41 @@ namespace AppStoreManager.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "OPS, MI SI è ROTTO IL SERVER");
             }
         }
+
+        [HttpPut]
+        public IActionResult Put(PermissionModel permission)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Not a valid model");
+            }
+
+            var existingPermission = _ctx.Permissions.Where(pe => pe.PermissionId == permission.Id).FirstOrDefault();
+            if (existingPermission != null)
+            {
+                existingPermission.Name = permission.Name;
+
+                _ctx.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var permission = _ctx.Permissions.Find(id);
+            if (permission == null)
+            {
+                return NotFound();
+            }
+
+            _ctx.Permissions.Remove(permission);
+            _ctx.SaveChanges();
+            return Ok("Elemento eliminato correttamente");
+        }
     }
 }
