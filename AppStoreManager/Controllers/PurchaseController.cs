@@ -3,6 +3,7 @@ using AppStoreManager.Entities;
 using AppStoreManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppStoreManager.Controllers
 {
@@ -18,6 +19,24 @@ namespace AppStoreManager.Controllers
         {
             var result = _ctx.Purchases.ToList();
             return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            List<AppCatalogue?> apps = _ctx.Purchases.Where(p => p.StoreUserId == id).Include(c => c.App.Category)
+                .Select(c => c.App).ToList();
+            List<AppModel> appModels = apps.ConvertAll(a => new AppModel()
+            {
+                Description = a.Description,
+                Id = a.AppCatalogueId,
+                Category = a.Category?.Name ?? "NO CATEGORIA",
+                Title = a.Title,
+                CategoryId = a.CategoryId,
+                Price = a.Price
+            });
+            return Ok(appModels);
         }
 
         [HttpPost]

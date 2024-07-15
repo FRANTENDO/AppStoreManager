@@ -1,3 +1,4 @@
+using AppStoreManager;
 using AppStoreManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddSqlite<AppManagerDbContext>(builder.Configuration.GetConnect
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
 
 var app = builder.Build();
 
@@ -28,3 +31,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

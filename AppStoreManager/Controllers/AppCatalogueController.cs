@@ -1,6 +1,5 @@
 ﻿using AppStoreManager.Data;
 using AppStoreManager.Entities;
-using AppStoreManager.Migrations;
 using AppStoreManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

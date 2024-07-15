@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AppStoreManager.Migrations
 {
     /// <inheritdoc />
-    public partial class DbCreation : Migration
+    public partial class Creation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -139,6 +141,72 @@ namespace AppStoreManager.Migrations
                         principalTable: "Users",
                         principalColumn: "StoreUserId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Game" },
+                    { 2, "Social" },
+                    { 3, "Messaging" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Permissions",
+                columns: new[] { "PermissionId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Foto" },
+                    { 2, "Contatti" },
+                    { 3, "Posizione" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "StoreUserId", "NickName" },
+                values: new object[,]
+                {
+                    { 1, "Francoxxx" },
+                    { 2, "ReVlasta_official" },
+                    { 3, "non_mi_drogo_" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AppCatalogues",
+                columns: new[] { "AppCatalogueId", "CategoryId", "Description", "Price", "Title" },
+                values: new object[,]
+                {
+                    { 1, 1, "Brutto", 0.0, "Clash of Clans" },
+                    { 2, 1, "Bello", 6.5, "Minecraft" },
+                    { 3, 2, "Vecchio", 0.0, "Instagram" },
+                    { 4, 2, "Nuovo", 0.0, "TikTok" },
+                    { 5, 3, "Vecchissimo", 0.0, "Whatsapp" },
+                    { 6, 3, "Russo", 0.0, "Telegram" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PayMethods",
+                columns: new[] { "PayMethodId", "Name", "StoreUserId" },
+                values: new object[,]
+                {
+                    { 1, "PayPal", 1 },
+                    { 2, "Carta di debito", 2 },
+                    { 3, "Carta di credito", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Purchases",
+                columns: new[] { "AppCatalogueId", "StoreUserId", "CreatedAt" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9306) },
+                    { 2, 2, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9388) },
+                    { 3, 3, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9394) },
+                    { 4, 1, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9400) },
+                    { 5, 2, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9405) },
+                    { 6, 3, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9419) }
                 });
 
             migrationBuilder.CreateIndex(

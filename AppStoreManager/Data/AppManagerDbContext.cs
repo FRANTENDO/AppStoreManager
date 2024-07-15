@@ -9,6 +9,8 @@ namespace AppStoreManager.Data
         {
             base.OnModelCreating(modelBuilder);
 
+
+
             List<Category> categories = new List<Category>()
             {
                 new Category() { CategoryId = 1, Name = "Game" },
@@ -39,12 +41,9 @@ namespace AppStoreManager.Data
             
             List<StoreUser> users = new List<StoreUser>()
             {
-                new StoreUser() { StoreUserId = 1, NickName = "CIAO1" },
-                new StoreUser() { StoreUserId = 2, NickName = "CIAO2" },
-                new StoreUser() { StoreUserId = 3, NickName = "CIAO3" },
-                new StoreUser() { StoreUserId = 4, NickName = "CIAO4" },
-                new StoreUser() { StoreUserId = 5, NickName = "CIAO5" },
-                new StoreUser() { StoreUserId = 6, NickName = "CIAO6" }
+                new StoreUser() { StoreUserId = 1, NickName = "Francoxxx", Password = "Password1" },
+                new StoreUser() { StoreUserId = 2, NickName = "ReVlasta_official", Password = "Password2" },
+                new StoreUser() { StoreUserId = 3, NickName = "non_mi_drogo_", Password = "Password3" }
                 };
             modelBuilder.Entity<StoreUser>().HasData(users);
 

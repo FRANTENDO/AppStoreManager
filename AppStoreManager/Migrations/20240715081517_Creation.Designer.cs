@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppStoreManager.Migrations
 {
     [DbContext(typeof(AppManagerDbContext))]
-    [Migration("20240708081705_DbCreation")]
-    partial class DbCreation
+    [Migration("20240715081517_Creation")]
+    partial class Creation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,56 @@ namespace AppStoreManager.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("AppCatalogues");
+
+                    b.HasData(
+                        new
+                        {
+                            AppCatalogueId = 1,
+                            CategoryId = 1,
+                            Description = "Brutto",
+                            Price = 0.0,
+                            Title = "Clash of Clans"
+                        },
+                        new
+                        {
+                            AppCatalogueId = 2,
+                            CategoryId = 1,
+                            Description = "Bello",
+                            Price = 6.5,
+                            Title = "Minecraft"
+                        },
+                        new
+                        {
+                            AppCatalogueId = 3,
+                            CategoryId = 2,
+                            Description = "Vecchio",
+                            Price = 0.0,
+                            Title = "Instagram"
+                        },
+                        new
+                        {
+                            AppCatalogueId = 4,
+                            CategoryId = 2,
+                            Description = "Nuovo",
+                            Price = 0.0,
+                            Title = "TikTok"
+                        },
+                        new
+                        {
+                            AppCatalogueId = 5,
+                            CategoryId = 3,
+                            Description = "Vecchissimo",
+                            Price = 0.0,
+                            Title = "Whatsapp"
+                        },
+                        new
+                        {
+                            AppCatalogueId = 6,
+                            CategoryId = 3,
+                            Description = "Russo",
+                            Price = 0.0,
+                            Title = "Telegram"
+                        });
                 });
 
             modelBuilder.Entity("AppStoreManager.Entities.Category", b =>
@@ -75,6 +125,23 @@ namespace AppStoreManager.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Name = "Game"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Name = "Social"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Name = "Messaging"
+                        });
                 });
 
             modelBuilder.Entity("AppStoreManager.Entities.PayMethod", b =>
@@ -95,6 +162,26 @@ namespace AppStoreManager.Migrations
                     b.HasIndex("StoreUserId");
 
                     b.ToTable("PayMethods");
+
+                    b.HasData(
+                        new
+                        {
+                            PayMethodId = 1,
+                            Name = "PayPal",
+                            StoreUserId = 1
+                        },
+                        new
+                        {
+                            PayMethodId = 2,
+                            Name = "Carta di debito",
+                            StoreUserId = 2
+                        },
+                        new
+                        {
+                            PayMethodId = 3,
+                            Name = "Carta di credito",
+                            StoreUserId = 3
+                        });
                 });
 
             modelBuilder.Entity("AppStoreManager.Entities.Permission", b =>
@@ -110,6 +197,23 @@ namespace AppStoreManager.Migrations
                     b.HasKey("PermissionId");
 
                     b.ToTable("Permissions");
+
+                    b.HasData(
+                        new
+                        {
+                            PermissionId = 1,
+                            Name = "Foto"
+                        },
+                        new
+                        {
+                            PermissionId = 2,
+                            Name = "Contatti"
+                        },
+                        new
+                        {
+                            PermissionId = 3,
+                            Name = "Posizione"
+                        });
                 });
 
             modelBuilder.Entity("AppStoreManager.Entities.Purchase", b =>
@@ -128,6 +232,44 @@ namespace AppStoreManager.Migrations
                     b.HasIndex("StoreUserId");
 
                     b.ToTable("Purchases");
+
+                    b.HasData(
+                        new
+                        {
+                            AppCatalogueId = 1,
+                            StoreUserId = 1,
+                            CreatedAt = new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9306)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 2,
+                            StoreUserId = 2,
+                            CreatedAt = new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9388)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 3,
+                            StoreUserId = 3,
+                            CreatedAt = new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9394)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 4,
+                            StoreUserId = 1,
+                            CreatedAt = new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9400)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 5,
+                            StoreUserId = 2,
+                            CreatedAt = new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9405)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 6,
+                            StoreUserId = 3,
+                            CreatedAt = new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9419)
+                        });
                 });
 
             modelBuilder.Entity("AppStoreManager.Entities.StoreUser", b =>
@@ -143,6 +285,23 @@ namespace AppStoreManager.Migrations
                     b.HasKey("StoreUserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            StoreUserId = 1,
+                            NickName = "Francoxxx"
+                        },
+                        new
+                        {
+                            StoreUserId = 2,
+                            NickName = "ReVlasta_official"
+                        },
+                        new
+                        {
+                            StoreUserId = 3,
+                            NickName = "non_mi_drogo_"
+                        });
                 });
 
             modelBuilder.Entity("AppCataloguePermission", b =>

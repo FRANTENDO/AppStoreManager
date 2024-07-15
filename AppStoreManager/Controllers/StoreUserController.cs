@@ -3,15 +3,22 @@ using AppStoreManager.Entities;
 using AppStoreManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging; // Assicurati di usare il namespace corretto per ILogger
 
 namespace AppStoreManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StoreUserController(AppManagerDbContext ctx, ILogger<StoreUserController> logger) : ControllerBase
+    public class StoreUserController : ControllerBase
     {
-        private ILogger<StoreUserController> _logger = logger;
-        private readonly AppManagerDbContext _ctx = ctx;
+        private readonly ILogger<StoreUserController> _logger;
+        private readonly AppManagerDbContext _ctx;
+
+        public StoreUserController(AppManagerDbContext ctx, ILogger<StoreUserController> logger)
+        {
+            _ctx = ctx;
+            _logger = logger;
+        }
 
         [HttpGet]
         public IActionResult GetAll()
@@ -29,8 +36,10 @@ namespace AppStoreManager.Controllers
                 StoreUser newItem = new StoreUser()
                 {
                     StoreUserId = storeUser.Id,
-                    NickName = storeUser.NickName
+                    NickName = storeUser.NickName,
+                    Password = storeUser.Pass
                 };
+
                 _ctx.Users.Add(newItem);
                 if (_ctx.SaveChanges() > 0)
                 {
@@ -53,7 +62,7 @@ namespace AppStoreManager.Controllers
                 return BadRequest("Not a valid model");
             }
 
-            var existingStoreUser = _ctx.Users.Where(u => u.StoreUserId == storeUser.Id).FirstOrDefault();
+            var existingStoreUser = _ctx.Users.FirstOrDefault(u => u.StoreUserId == storeUser.Id);
             if (existingStoreUser != null)
             {
                 existingStoreUser.NickName = storeUser.NickName;

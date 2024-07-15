@@ -235,19 +235,37 @@ namespace AppStoreManager.Migrations
                         {
                             AppCatalogueId = 1,
                             StoreUserId = 1,
-                            CreatedAt = new DateTime(2024, 7, 8, 14, 33, 0, 566, DateTimeKind.Local).AddTicks(1661)
+                            CreatedAt = new DateTime(2024, 7, 15, 14, 11, 21, 822, DateTimeKind.Local).AddTicks(2536)
                         },
                         new
                         {
                             AppCatalogueId = 2,
                             StoreUserId = 2,
-                            CreatedAt = new DateTime(2024, 7, 8, 14, 33, 0, 566, DateTimeKind.Local).AddTicks(1712)
+                            CreatedAt = new DateTime(2024, 7, 15, 14, 11, 21, 822, DateTimeKind.Local).AddTicks(2587)
                         },
                         new
                         {
                             AppCatalogueId = 3,
                             StoreUserId = 3,
-                            CreatedAt = new DateTime(2024, 7, 8, 14, 33, 0, 566, DateTimeKind.Local).AddTicks(1715)
+                            CreatedAt = new DateTime(2024, 7, 15, 14, 11, 21, 822, DateTimeKind.Local).AddTicks(2591)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 4,
+                            StoreUserId = 1,
+                            CreatedAt = new DateTime(2024, 7, 15, 14, 11, 21, 822, DateTimeKind.Local).AddTicks(2597)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 5,
+                            StoreUserId = 2,
+                            CreatedAt = new DateTime(2024, 7, 15, 14, 11, 21, 822, DateTimeKind.Local).AddTicks(2600)
+                        },
+                        new
+                        {
+                            AppCatalogueId = 6,
+                            StoreUserId = 3,
+                            CreatedAt = new DateTime(2024, 7, 15, 14, 11, 21, 822, DateTimeKind.Local).AddTicks(2605)
                         });
                 });
 
@@ -261,6 +279,10 @@ namespace AppStoreManager.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("StoreUserId");
 
                     b.ToTable("Users");
@@ -269,17 +291,20 @@ namespace AppStoreManager.Migrations
                         new
                         {
                             StoreUserId = 1,
-                            NickName = "Francoxxx"
+                            NickName = "Francoxxx",
+                            Password = "Password1"
                         },
                         new
                         {
                             StoreUserId = 2,
-                            NickName = "ReVlasta_official"
+                            NickName = "ReVlasta_official",
+                            Password = "Password2"
                         },
                         new
                         {
                             StoreUserId = 3,
-                            NickName = "non_mi_drogo_"
+                            NickName = "non_mi_drogo_",
+                            Password = "Password3"
                         });
                 });
 
