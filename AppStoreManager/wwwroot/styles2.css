@@ -7,17 +7,52 @@ body {
     margin: 0;
 }
 
+main {
+    margin-top: 37px;
+}
+
+input#search {
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+#confirm-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #333;
+}
+
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-item .input-group {
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-item .form-control {
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-item .btn {
+    border-radius: 20px;
+    padding: 10px 20px;
 }
 
 .logo h1 {
@@ -101,7 +136,7 @@ nav ul {
 }
 
 footer {
-    margin-top: 220px;
+    margin-top: 245px;
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -116,19 +151,20 @@ footer {
 }
 
 #form-response {
-    color: #333;
+    color: #fff;
     font-weight: bold;
 }
 
 .contact-form {
-    text-align: center;
-    margin-top: 40px; /* Aggiungi margine superiore per spostare il modulo in basso */
-    background-color: #fff;
+    text-align: left;
+    margin-top: 35px; /* Aggiungi margine superiore per spostare il moodulo in basso */
+    background: transparent;
+    border: 5px solid rgba(255, 255, 255, 0.667);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    margin-left: auto;
+    margin-left: 225px;
     margin-right: auto;
 }
 
@@ -144,7 +180,7 @@ footer {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: #888; /* Colore grigio per il testo */
+    color: #fff; /* Colore grigio per il testo */
 }
 
 .btn-primary {
@@ -160,10 +196,12 @@ footer {
     }
 
 .contact-header {
+    margin-top: 150px;
     text-align: center;
     margin-bottom: 20px;
 }
 
     .contact-header h2 {
+        margin-left: -850px;
         color: #fff;
     }

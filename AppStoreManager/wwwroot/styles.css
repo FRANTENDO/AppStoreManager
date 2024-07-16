@@ -115,4 +115,14 @@ header {
 
 .search-result-button {
     margin-left: auto;
+}    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Posizione fissata */
+    bottom: 0; /* In fondo alla pagina */
+    width: 100%;
+}
+    padding: 10px 0;
+    position: fixed; /* Posizione fissata */
+    bottom: 0; /* In fondo alla pagina */
+    width: 100%;
 }
