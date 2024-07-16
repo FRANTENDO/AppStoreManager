@@ -1,54 +1,50 @@
 /* styles.css */
-
 body {
-    font-family: Arial, sans-serif;
+    background-image: url('images/bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
     margin: 0;
-    background-color: #333;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Altezza minima della viewport */
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+main {
+    margin-top: 37px;
 }
 
-.navbar {
+.apps, .installed-apps {
+    background-color: rgba(255, 255, 255, 0.648);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.category h3 {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-body {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
 }
 
-.logo h1 {
-    margin: 0;
+.app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: center;
+input#search {
+    border-radius: 20px;
+    padding: 10px 15px;
 }
-
-    nav ul li {
-        margin-left: 20px;
-    }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        nav ul li input {
-            padding: 5px;
-            border-radius: 4px;
-            border: none;
-        }
 
 #confirm-button {
     margin-left: 10px;
@@ -60,55 +56,63 @@ nav ul {
     color: #333;
 }
 
-.main {
-    flex: 1; /* Per far sì che il main occupi lo spazio rimanente */
-    padding: 20px;
-    background-color: #333;
-}
-
-.apps, .installed-apps {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-    .apps h2, .installed-apps h2 {
-        margin-top: 10px;
-    }
-
-.category h3 {
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-.category p {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-}
-
-.app-item {
-    display: flex;
-    align-items: center;
-}
-
-    .app-item img {
-        margin-right: 10px;
-    }
-
-.app-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-}
-
 footer {
     background-color: #333;
     color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed; /* Posizione fissata */
-    bottom: 0; /* In fondo alla pagina */
-    width: 100%;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-item .input-group {
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-item .form-control {
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-item .btn {
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+/* New CSS for search results */
+.search-result-card {
+    margin-bottom: 20px;
+}
+
+    .search-result-card .card-body {
+        background-color: rgba(255, 255, 255, 0.648);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+.search-result-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.search-result-text {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.search-result-button {
+    margin-left: auto;
 }

@@ -15,9 +15,7 @@
     const searchInput = document.getElementById('search');
     const searchResult = document.getElementById('search-result-bottom');
 
-    // Funzione per determinare lo stato dell'app e il prezzo
     function getAppStateAndPrice(appName) {
-        // Simuliamo qui la logica per determinare se l'app è installata e il prezzo
         const installedApps = [
             'Minecraft',
             'Clash Of Clans',
@@ -31,7 +29,6 @@
         return { installed, price };
     }
 
-    // Funzione per eseguire la ricerca e mostrare i risultati
     function performSearch() {
         const searchTerm = searchInput.value.toLowerCase();
         const filteredApps = apps.filter(app => app.name.toLowerCase().includes(searchTerm));
@@ -42,37 +39,27 @@
             appDiv.className = 'col-12 col-md-6 col-lg-4';
             appDiv.innerHTML = `
                 <div class="card mb-4">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="${app.icon}" class="card-img search-result-img" alt="${app.name}">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${app.name}</h5>
-                                <p class="card-text">${app.description}</p>
-                                <p class="card-text"><small class="text-muted">Price: $${app.price}</small></p>
-                                <div id="button-${app.id}" class="app-button"></div>
-                            </div>
-                        </div>
+                    <img src="${app.icon}" class="card-img-top search-result-img" alt="${app.name}">
+                    <div class="card-body">
+                        <h5 class="card-title search-result-text">${app.name}</h5>
+                        <p class="card-text search-result-text">${app.description}</p>
+                        <p class="card-text search-result-text"><small class="text-muted"></small></p>
+                        <div id="button-${app.id}" class="search-result-button"></div>
                     </div>
                 </div>
             `;
             searchResult.appendChild(appDiv);
 
-            // Ottieni il container del bottone per l'app corrente
             const buttonContainer = document.getElementById(`button-${app.id}`);
-
-            // Ottieni lo stato dell'app e il prezzo
             const { installed, price } = getAppStateAndPrice(app.name);
 
-            // Genera il bottone corretto in base allo stato e al prezzo
             if (installed) {
-                buttonContainer.innerHTML = '<button class="btn btn-primary">Apri</button>';
+                buttonContainer.innerHTML = '<button class="btn btn-primary btn-sm">Open</button>';
             } else {
                 if (price === 0) {
-                    buttonContainer.innerHTML = '<button class="btn btn-success">Ottieni</button>';
+                    buttonContainer.innerHTML = '<button class="btn btn-success btn-sm">Get</button>';
                 } else {
-                    buttonContainer.innerHTML = `<button class="btn btn-info">Acquista $${app.price}</button>`;
+                    buttonContainer.innerHTML = `<button class="btn btn-info btn-sm">Buy $${app.price}</button>`;
                 }
             }
         });
@@ -86,7 +73,6 @@
     }
 
     searchButton.addEventListener('click', performSearch);
-
     searchInput.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             performSearch();
