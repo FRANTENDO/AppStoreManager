@@ -1,13 +1,10 @@
-﻿/* styles2.css */
-
+﻿
 body {
-    font-family: Arial, sans-serif;
+    background-image: url('images/bg2.jpg');
+    background-size: cover; /* Puoi usare anche 'contain' o altre opzioni */
+    background-position: center; /* Centra l'immagine */
+    height: 100vh; /* Assicura che il body prenda tutta l'altezza della finestra */
     margin: 0;
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Altezza minima della viewport */
 }
 
 header {
@@ -62,12 +59,6 @@ nav ul {
     color: #333;
 }
 
-.main {
-    flex: 1; /* Per far sì che il main occupi lo spazio rimanente */
-    padding: 20px;
-    background-color: #333;
-}
-
 .apps,
 .installed-apps {
     background-color: #ffffff;
@@ -110,6 +101,7 @@ nav ul {
 }
 
 footer {
+    margin-top: 220px;
     background-color: #333;
     color: #fff;
     text-align: center;

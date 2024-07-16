@@ -34,7 +34,8 @@ namespace AppStoreManager.Controllers
                 Category = a.Category?.Name ?? "NO CATEGORIA",
                 Title = a.Title,
                 CategoryId = a.CategoryId,
-                Price = a.Price
+                Price = a.Price,
+                IconPath = a.IconPath
             });
             return Ok(appModels);
         }

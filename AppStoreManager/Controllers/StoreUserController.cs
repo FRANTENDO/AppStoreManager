@@ -89,41 +89,5 @@ namespace AppStoreManager.Controllers
             _ctx.SaveChanges();
             return Ok("Elemento eliminato correttamente");
         }
-
-        [HttpPut]
-        public IActionResult Put(StoreUserModel storeUser)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Not a valid model");
-            }
-
-            var existingStoreUser = _ctx.Users.Where(u => u.StoreUserId == storeUser.Id).FirstOrDefault();
-            if (existingStoreUser != null)
-            {
-                existingStoreUser.NickName = storeUser.NickName;
-
-                _ctx.SaveChanges();
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var storeUser = _ctx.Users.Find(id);
-            if (storeUser == null)
-            {
-                return NotFound();
-            }
-
-            _ctx.Users.Remove(storeUser);
-            _ctx.SaveChanges();
-            return Ok("Elemento eliminato correttamente");
-        }
     }
 }

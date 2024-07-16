@@ -3,6 +3,7 @@ using System;
 using AppStoreManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppStoreManager.Migrations
 {
     [DbContext(typeof(AppManagerDbContext))]
-    partial class AppManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240716143915_AddIconPathToAppCatalogue")]
+    partial class AddIconPathToAppCatalogue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");

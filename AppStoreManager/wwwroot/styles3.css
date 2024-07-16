@@ -1,6 +1,4 @@
-﻿/* styles3.css */
-
-/* Reset del margin e padding */
+﻿
 * {
     margin: 0;
     padding: 0;
@@ -9,14 +7,23 @@
 
 html, body {
     font-family: Arial, sans-serif;
-    background-color: #333; /* Sfondo grigio */
-    color: #fff; /* Colore del testo bianco per tutto il corpo */
+    background-color: #333;
+    color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Per allineare header, main e footer */
-    min-height: 100vh; /* Altezza minima dell'intera viewport */
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+body {
+    background-image: url('images/bg2.jpg');
+    background-size: cover; /* Puoi usare anche 'contain' o altre opzioni */
+    background-repeat: no-repeat; /* Evita che l'immagine si ripeta */
+    background-position: center; /* Centra l'immagine */
+    height: 100vh; /* Assicura che il body prenda tutta l'altezza della finestra */
+    margin: 0;
 }
 
 header {
@@ -57,8 +64,8 @@ nav ul {
             padding: 5px;
             border-radius: 4px;
             border: none;
-            color: #333; /* Colore del testo nella barra di ricerca */
-            background-color: #fff; /* Sfondo della barra di ricerca */
+            color: #333;
+            background-color: #fff;
         }
 
 #confirm-button {
@@ -73,21 +80,21 @@ nav ul {
 
 .main {
     padding: 20px;
-    flex: 1; /* Per far sì che il main occupi lo spazio rimanente */
+    flex: 1;
     display: flex;
-    justify-content: center; /* Allinea il contenuto al centro */
-    align-items: center; /* Allinea il contenuto al centro */
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     max-width: 800px;
-    text-align: center; /* Allinea il contenuto al centro */
+    text-align: left;
 }
 
 .social-icons {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
 }
 
 .social-icon {
@@ -97,13 +104,14 @@ nav ul {
 }
 
     .social-icon:hover {
-        transform: scale(1.2); /* Ingrandisce leggermente al passaggio del mouse */
+        transform: scale(1.2);
     }
 
 .social-img {
     width: 180px; /* Dimensioni delle immagini dei social più grandi */
     height: 180px;
-    border-radius: 50%; /* Bordi arrotondati */
+    border-radius: 50%;
+    margin-left: -75px; /* Bordi arrotondati */
 }
 
 footer {

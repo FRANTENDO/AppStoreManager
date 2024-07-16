@@ -24,7 +24,7 @@ namespace AppStoreManager.Controllers
             }
 
             // Imposta l'indirizzo email predefinito se il campo To è vuoto
-            if (string.IsNullOrWhiteSpace(model.To))
+            if (string.IsNullOrWhiteSpace(model.To) || model.To=="string")
             {
                 model.To = "frafio2006@gmail.com";
             }

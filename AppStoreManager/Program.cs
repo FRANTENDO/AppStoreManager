@@ -12,6 +12,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
+// Configura CORS per permettere richieste dal front-end
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
 
@@ -26,10 +37,11 @@ app.UseFileServer();
 
 app.UseHttpsRedirection();
 
+// Abilita CORS
+app.UseCors("AllowAll");
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
-
-

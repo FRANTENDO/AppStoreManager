@@ -1,0 +1,57 @@
+﻿body {
+    background-image: url('images/bg2.jpg');
+    background-size: cover; /* Puoi usare anche 'contain' o altre opzioni */
+    background-repeat: no-repeat; /* Evita che l'immagine si ripeta */
+    background-position: center; /* Centra l'immagine */
+    height: 100vh; /* Assicura che il body prenda tutta l'altezza della finestra */
+    margin: 0;
+}
+
+.container {
+    margin-top: 100px;
+    background: #333(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    transform: translateY(50px); /* Sposta il modulo di login 50px più in basso */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+    .login-form label, .login-form input, .login-form button {
+        margin-bottom: 10px;
+    }
+
+#form-response {
+    color: green;
+    font-weight: bold;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+main {
+    min-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+/* New styles for recovery password page */
+.recovery-header {
+    margin-top: 50px; /* Adjust this value to move the header down */
+}
+
+footer {
+    margin-top: 405px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
