@@ -1,13 +1,8 @@
-﻿document.addEventListener('DOMContentLoaded', async function () {
-    let users = JSON.parse(localStorage.getItem('users')) || [];
-    //var response = await fetch("/api/StoreUser");
-    //users = await response.json();
-    //console.log(users);
-
-    fetch("/api/StoreUser").then(response => response.json()).then(json => Test(json));
-
+﻿document.addEventListener('DOMContentLoaded', function () {
     const registerForm = document.getElementById('register-form');
     const registerResponse = document.getElementById('register-response');
+
+    fetch("/api/StoreUser").then(response => response.json()).then(json => Test(json));
 
     if (registerForm) {
         registerForm.addEventListener('submit', function (event) {
@@ -15,39 +10,78 @@
 
             const fullname = document.getElementById('fullname').value;
             const email = document.getElementById('email').value;
-            const username = document.getElementById('new-username').value;
-            const password = document.getElementById('new-password').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-            // Verifica se l'username è già in uso
-            const existingUser = users.find(user => user.username === username);
+            const userData = {
+                fullname: fullname,
+                email: email,
+                username: username,
+                password: password
+            };
 
-            if (existingUser) {
-                // Se l'username è già in uso, mostra messaggio di errore
-                registerResponse.innerHTML = `
+            // Fetch per verificare se l'username è già in uso
+            fetch('https://localhost:7207/api/StoreUser/CheckUsername', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore durante la verifica dell\'username');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Se l'username è già in uso, mostra messaggio di errore
+                    if (data.isUsernameTaken) {
+                        registerResponse.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            Username già in uso. Scegli un altro username.
+                        </div>`;
+                    } else {
+                        // Se l'username non è già in uso, procedi con la registrazione
+                        fetch('https://localhost:7207/api/StoreUser/Register', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(userData)
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Errore durante la registrazione');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Operazioni dopo la registrazione riuscita
+                                registerResponse.innerHTML = `
+                            <div class="alert alert-success" role="alert">
+                                Registrazione completata con successo. Verrai reindirizzato alla pagina di accesso.
+                            </div>`;
+                                setTimeout(function () {
+                                    window.location.href = 'index.html'; // Reindirizzamento dopo 2 secondi
+                                }, 2000);
+                            })
+                            .catch(error => {
+                                console.error('Errore durante la registrazione:', error);
+                                registerResponse.innerHTML = `
+                            <div class="alert alert-danger" role="alert">
+                                Si è verificato un errore durante la registrazione. Riprova più tardi.
+                            </div>`;
+                            });
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore durante la verifica dell\'username:', error);
+                    registerResponse.innerHTML = `
                     <div class="alert alert-danger" role="alert">
-                        Username già in uso. Scegli un altro username.
+                        Si è verificato un errore durante la verifica dell'username. Riprova più tardi.
                     </div>`;
-            } else {
-                // Se l'username non è già in uso, aggiungi l'utente agli utenti registrati
-               // users.push({ fullname: fullname, email: email, username: username, password: password });
-
-                // Salva gli utenti registrati in localStorage
-                const response = await fetch("/api/StoreUserController", {
-                    method: "POST",
-                    body: JSON.stringify({ username: users }),
-                    headers: myHeaders,
-
-                // Mostra messaggio di successo e reindirizza alla pagina di accesso
-                registerResponse.innerHTML = `
-                    <div class="alert alert-success" role="alert">
-                        Registrazione completata con successo. Verrai reindirizzato alla pagina di accesso.
-                    </div>`;
-
-                // Reindirizza alla pagina di accesso dopo 2 secondi
-                setTimeout(function () {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }
+                });
         });
     }
 });
