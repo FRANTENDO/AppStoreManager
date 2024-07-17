@@ -33,7 +33,7 @@ namespace YourNamespace.Controllers
             return File(memory, contentType, Path.GetFileName(path));
         }
 
-        private string GetContentType(string path)
+        private string GetContentType(string path) 
         {
             var types = GetMimeTypes();
             var ext = Path.GetExtension(path).ToLowerInvariant();

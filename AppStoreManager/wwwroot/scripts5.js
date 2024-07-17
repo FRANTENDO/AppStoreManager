@@ -1,5 +1,10 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', async function () {
     let users = JSON.parse(localStorage.getItem('users')) || [];
+    //var response = await fetch("/api/StoreUser");
+    //users = await response.json();
+    //console.log(users);
+
+    fetch("/api/StoreUser").then(response => response.json()).then(json => Test(json));
 
     const registerForm = document.getElementById('register-form');
     const registerResponse = document.getElementById('register-response');
@@ -43,3 +48,7 @@
         });
     }
 });
+
+function Test(json) {
+    console.log(json);
+}
