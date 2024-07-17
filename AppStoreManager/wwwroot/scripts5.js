@@ -21,7 +21,7 @@
             };
 
             // Fetch per verificare se l'username è già in uso
-            fetch('https://localhost:7207/api/StoreUser/CheckUsername', {
+            fetch('/api/StoreUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -43,7 +43,7 @@
                         </div>`;
                     } else {
                         // Se l'username non è già in uso, procedi con la registrazione
-                        fetch('https://localhost:7207/api/StoreUser/Register', {
+                        fetch('/api/StoreUser', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -63,8 +63,8 @@
                                 Registrazione completata con successo. Verrai reindirizzato alla pagina di accesso.
                             </div>`;
                                 setTimeout(function () {
-                                    window.location.href = 'index.html'; // Reindirizzamento dopo 2 secondi
-                                }, 2000);
+                                    window.location.href = 'index.html'; // Reindirizzamento dopo 1 secondo
+                                }, 1000);
                             })
                             .catch(error => {
                                 console.error('Errore durante la registrazione:', error);

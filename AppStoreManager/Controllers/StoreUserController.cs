@@ -40,6 +40,9 @@ namespace AppStoreManager.Controllers
             }
             return Ok(new { isUsernameTaken = false });
         }
+        
+        [HttpPost]
+        [Route("Register")]
         public IActionResult Post(StoreUserModel storeUser)
         {
             try
