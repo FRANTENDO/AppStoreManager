@@ -29,10 +29,13 @@
                     </div>`;
             } else {
                 // Se l'username non è già in uso, aggiungi l'utente agli utenti registrati
-                users.push({ fullname: fullname, email: email, username: username, password: password });
+               // users.push({ fullname: fullname, email: email, username: username, password: password });
 
                 // Salva gli utenti registrati in localStorage
-                localStorage.setItem('users', JSON.stringify(users));
+                const response = await fetch("/api/StoreUserController", {
+                    method: "POST",
+                    body: JSON.stringify({ username: users }),
+                    headers: myHeaders,
 
                 // Mostra messaggio di successo e reindirizza alla pagina di accesso
                 registerResponse.innerHTML = `

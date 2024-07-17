@@ -28,6 +28,18 @@ namespace AppStoreManager.Controllers
         }
 
         [HttpPost]
+        [Route("CheckUsername")]
+
+        public IActionResult CheckUsername([FromBody] string username)
+        {
+            var existingUser = _ctx.Users.FirstOrDefault(u => u.NickName == username);
+            if (existingUser != null)
+            {
+                return Ok(new { isUsernameTaken = true });
+
+            }
+            return Ok(new { isUsernameTaken = false });
+        }
         public IActionResult Post(StoreUserModel storeUser)
         {
             try
