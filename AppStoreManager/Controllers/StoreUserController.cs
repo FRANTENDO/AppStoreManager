@@ -3,7 +3,8 @@ using AppStoreManager.Entities;
 using AppStoreManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging; // Assicurati di usare il namespace corretto per ILogger
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace AppStoreManager.Controllers
 {
@@ -20,37 +21,14 @@ namespace AppStoreManager.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            var result = _ctx.Users.ToList();
-            return Ok(result);
-        }
-
         [HttpPost]
-        [Route("CheckUsername")]
-
-        public IActionResult CheckUsername([FromBody] string username)
-        {
-            var existingUser = _ctx.Users.FirstOrDefault(u => u.NickName == username);
-            if (existingUser != null)
-            {
-                return Ok(new { isUsernameTaken = true });
-
-            }
-            return Ok(new { isUsernameTaken = false });
-        }
-        
-        [HttpPost]
-        [Route("Register")]
-        public IActionResult Post(StoreUserModel storeUser)
+        public IActionResult Post([FromBody] StoreUserModel storeUser)
         {
             try
             {
-                storeUser.Id = 0;
+                // Crea un nuovo oggetto StoreUser per salvare nel database
                 StoreUser newItem = new StoreUser()
                 {
-                    StoreUserId = storeUser.Id,
                     NickName = storeUser.NickName,
                     Password = storeUser.Pass,
                     FullName = storeUser.FullName,
@@ -58,53 +36,16 @@ namespace AppStoreManager.Controllers
                 };
 
                 _ctx.Users.Add(newItem);
-                if (_ctx.SaveChanges() > 0)
-                {
-                    return Ok("TUTTO A POSTO");
-                }
-                return BadRequest("CHE MI HAI MANDATO?!?");
+                _ctx.SaveChanges();
+
+                return Ok("Registrazione completata con successo");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "OPS, MI SI è ROTTO IL SERVER");
+                _logger.LogError(ex, "Errore durante la registrazione");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Si è verificato un errore durante la registrazione: {ex.Message}");
             }
         }
 
-        [HttpPut]
-        public IActionResult Put(StoreUserModel storeUser)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Not a valid model");
-            }
-
-            var existingStoreUser = _ctx.Users.FirstOrDefault(u => u.StoreUserId == storeUser.Id);
-            if (existingStoreUser != null)
-            {
-                existingStoreUser.NickName = storeUser.NickName;
-
-                _ctx.SaveChanges();
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var storeUser = _ctx.Users.Find(id);
-            if (storeUser == null)
-            {
-                return NotFound();
-            }
-
-            _ctx.Users.Remove(storeUser);
-            _ctx.SaveChanges();
-            return Ok("Elemento eliminato correttamente");
-        }
     }
 }

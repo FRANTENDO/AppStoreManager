@@ -2,26 +2,23 @@
     const registerForm = document.getElementById('register-form');
     const registerResponse = document.getElementById('register-response');
 
-    fetch("/api/StoreUser").then(response => response.json()).then(json => Test(json));
-
     if (registerForm) {
         registerForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
             const fullname = document.getElementById('fullname').value;
             const email = document.getElementById('email').value;
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
 
             const userData = {
-                fullname: fullname,
-                email: email,
-                username: username,
-                password: password
+                FullName: fullname,
+                Mail: email,
+                NickName: username,
+                Pass: password
             };
 
-            // Fetch per verificare se l'username è già in uso
-            fetch('/api/StoreUser', {
+            fetch('https://localhost:7207/api/StoreUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -43,7 +40,7 @@
                         </div>`;
                     } else {
                         // Se l'username non è già in uso, procedi con la registrazione
-                        fetch('/api/StoreUser', {
+                        fetch('https://localhost:7207/api/StoreUser/Register', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -63,8 +60,8 @@
                                 Registrazione completata con successo. Verrai reindirizzato alla pagina di accesso.
                             </div>`;
                                 setTimeout(function () {
-                                    window.location.href = 'index.html'; // Reindirizzamento dopo 1 secondo
-                                }, 1000);
+                                    window.location.href = 'index.html'; // Reindirizzamento dopo 2 secondi
+                                }, 2000);
                             })
                             .catch(error => {
                                 console.error('Errore durante la registrazione:', error);
@@ -85,7 +82,3 @@
         });
     }
 });
-
-function Test(json) {
-    console.log(json);
-}
