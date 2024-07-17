@@ -37,7 +37,9 @@ namespace AppStoreManager.Controllers
                 {
                     StoreUserId = storeUser.Id,
                     NickName = storeUser.NickName,
-                    Password = storeUser.Pass
+                    Password = storeUser.Pass,
+                    FullName = storeUser.FullName,
+                    Mail = storeUser.Mail
                 };
 
                 _ctx.Users.Add(newItem);

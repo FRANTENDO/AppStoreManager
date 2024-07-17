@@ -45,7 +45,10 @@ namespace AppStoreManager.Migrations
                 {
                     StoreUserId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NickName = table.Column<string>(type: "TEXT", nullable: false)
+                    NickName = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    Mail = table.Column<string>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,7 +64,8 @@ namespace AppStoreManager.Migrations
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false),
-                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IconPath = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,25 +169,25 @@ namespace AppStoreManager.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "StoreUserId", "NickName" },
+                columns: new[] { "StoreUserId", "FullName", "Mail", "NickName", "Password" },
                 values: new object[,]
                 {
-                    { 1, "Francoxxx" },
-                    { 2, "ReVlasta_official" },
-                    { 3, "non_mi_drogo_" }
+                    { 1, "Franco Antonio", "Francoxxx@gmail.com", "Francoxxx", "Password1" },
+                    { 2, "Giorgio Cubetti", "GiorgioCubes@gmail.com", "ReVlasta_official", "Password2" },
+                    { 3, "Meth Anfetamina", "Ladrogaaaaaa@gmail.com", "non_mi_drogo_", "Password3" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AppCatalogues",
-                columns: new[] { "AppCatalogueId", "CategoryId", "Description", "Price", "Title" },
+                columns: new[] { "AppCatalogueId", "CategoryId", "Description", "IconPath", "Price", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, "Brutto", 0.0, "Clash of Clans" },
-                    { 2, 1, "Bello", 6.5, "Minecraft" },
-                    { 3, 2, "Vecchio", 0.0, "Instagram" },
-                    { 4, 2, "Nuovo", 0.0, "TikTok" },
-                    { 5, 3, "Vecchissimo", 0.0, "Whatsapp" },
-                    { 6, 3, "Russo", 0.0, "Telegram" }
+                    { 1, 1, "Brutto", "default.png", 0.0, "Clash of Clans" },
+                    { 2, 1, "Bello", "default.png", 6.5, "Minecraft" },
+                    { 3, 2, "Vecchio", "default.png", 0.0, "Instagram" },
+                    { 4, 2, "Nuovo", "default.png", 0.0, "TikTok" },
+                    { 5, 3, "Vecchissimo", "default.png", 0.0, "Whatsapp" },
+                    { 6, 3, "Russo", "default.png", 0.0, "Telegram" }
                 });
 
             migrationBuilder.InsertData(
@@ -201,12 +205,12 @@ namespace AppStoreManager.Migrations
                 columns: new[] { "AppCatalogueId", "StoreUserId", "CreatedAt" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9306) },
-                    { 2, 2, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9388) },
-                    { 3, 3, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9394) },
-                    { 4, 1, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9400) },
-                    { 5, 2, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9405) },
-                    { 6, 3, new DateTime(2024, 7, 15, 10, 15, 17, 103, DateTimeKind.Local).AddTicks(9419) }
+                    { 1, 1, new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5272) },
+                    { 2, 2, new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5336) },
+                    { 3, 3, new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5341) },
+                    { 4, 1, new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5345) },
+                    { 5, 2, new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5349) },
+                    { 6, 3, new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5355) }
                 });
 
             migrationBuilder.CreateIndex(

@@ -9,5 +9,6 @@
         public int CategoryId { get; set; }
         public required string Category { get; set; }
         public required string IconPath { get; set; }
+        public byte[]? Icon { get; set; }
     }
 }

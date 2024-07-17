@@ -22,12 +22,12 @@ namespace AppStoreManager.Data
 
             List<AppCatalogue> apps = new List<AppCatalogue>()
             {
-                new AppCatalogue() { AppCatalogueId = 1, CategoryId = 1, Title = "Clash of Clans", Description = "Brutto", Price = 0 },
-                new AppCatalogue() { AppCatalogueId = 2, CategoryId = 1, Title = "Minecraft", Description = "Bello", Price = 6.50 },
-                new AppCatalogue() { AppCatalogueId = 3, CategoryId = 2, Title = "Instagram", Description = "Vecchio", Price = 0 },
-                new AppCatalogue() { AppCatalogueId = 4, CategoryId = 2, Title = "TikTok", Description = "Nuovo", Price = 0 },
-                new AppCatalogue() { AppCatalogueId = 5, CategoryId = 3, Title = "Whatsapp", Description = "Vecchissimo", Price = 0 },
-                new AppCatalogue() { AppCatalogueId = 6, CategoryId = 3, Title = "Telegram", Description = "Russo", Price = 0 }
+                new AppCatalogue() { IconPath = "default.png", AppCatalogueId = 1, CategoryId = 1, Title = "Clash of Clans", Description = "Brutto", Price = 0 },
+                new AppCatalogue() { IconPath = "default.png", AppCatalogueId = 2, CategoryId = 1, Title = "Minecraft", Description = "Bello", Price = 6.50 },
+                new AppCatalogue() { IconPath = "default.png", AppCatalogueId = 3, CategoryId = 2, Title = "Instagram", Description = "Vecchio", Price = 0 },
+                new AppCatalogue() { IconPath = "default.png", AppCatalogueId = 4, CategoryId = 2, Title = "TikTok", Description = "Nuovo", Price = 0 },
+                new AppCatalogue() { IconPath = "default.png", AppCatalogueId = 5, CategoryId = 3, Title = "Whatsapp", Description = "Vecchissimo", Price = 0 },
+                new AppCatalogue() { IconPath = "default.png", AppCatalogueId = 6, CategoryId = 3, Title = "Telegram", Description = "Russo", Price = 0 }
             };
             modelBuilder.Entity<AppCatalogue>().HasData(apps);
 
@@ -41,9 +41,9 @@ namespace AppStoreManager.Data
             
             List<StoreUser> users = new List<StoreUser>()
             {
-                new StoreUser() { StoreUserId = 1, NickName = "Francoxxx", Password = "Password1" },
-                new StoreUser() { StoreUserId = 2, NickName = "ReVlasta_official", Password = "Password2" },
-                new StoreUser() { StoreUserId = 3, NickName = "non_mi_drogo_", Password = "Password3" }
+                new StoreUser() { StoreUserId = 1, NickName = "Francoxxx", Password = "Password1", FullName = "Franco Antonio", Mail= "Francoxxx@gmail.com" },
+                new StoreUser() { StoreUserId = 2, NickName = "ReVlasta_official", Password = "Password2", FullName = "Giorgio Cubetti", Mail= "GiorgioCubes@gmail.com" },
+                new StoreUser() { StoreUserId = 3, NickName = "non_mi_drogo_", Password = "Password3", FullName = "Meth Anfetamina", Mail= "Ladrogaaaaaa@gmail.com" }
                 };
             modelBuilder.Entity<StoreUser>().HasData(users);
 

@@ -46,6 +46,7 @@ namespace AppStoreManager.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IconPath")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Price")
@@ -67,6 +68,7 @@ namespace AppStoreManager.Migrations
                             AppCatalogueId = 1,
                             CategoryId = 1,
                             Description = "Brutto",
+                            IconPath = "default.png",
                             Price = 0.0,
                             Title = "Clash of Clans"
                         },
@@ -75,6 +77,7 @@ namespace AppStoreManager.Migrations
                             AppCatalogueId = 2,
                             CategoryId = 1,
                             Description = "Bello",
+                            IconPath = "default.png",
                             Price = 6.5,
                             Title = "Minecraft"
                         },
@@ -83,6 +86,7 @@ namespace AppStoreManager.Migrations
                             AppCatalogueId = 3,
                             CategoryId = 2,
                             Description = "Vecchio",
+                            IconPath = "default.png",
                             Price = 0.0,
                             Title = "Instagram"
                         },
@@ -91,6 +95,7 @@ namespace AppStoreManager.Migrations
                             AppCatalogueId = 4,
                             CategoryId = 2,
                             Description = "Nuovo",
+                            IconPath = "default.png",
                             Price = 0.0,
                             Title = "TikTok"
                         },
@@ -99,6 +104,7 @@ namespace AppStoreManager.Migrations
                             AppCatalogueId = 5,
                             CategoryId = 3,
                             Description = "Vecchissimo",
+                            IconPath = "default.png",
                             Price = 0.0,
                             Title = "Whatsapp"
                         },
@@ -107,6 +113,7 @@ namespace AppStoreManager.Migrations
                             AppCatalogueId = 6,
                             CategoryId = 3,
                             Description = "Russo",
+                            IconPath = "default.png",
                             Price = 0.0,
                             Title = "Telegram"
                         });
@@ -238,37 +245,37 @@ namespace AppStoreManager.Migrations
                         {
                             AppCatalogueId = 1,
                             StoreUserId = 1,
-                            CreatedAt = new DateTime(2024, 7, 16, 16, 39, 15, 56, DateTimeKind.Local).AddTicks(2006)
+                            CreatedAt = new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5272)
                         },
                         new
                         {
                             AppCatalogueId = 2,
                             StoreUserId = 2,
-                            CreatedAt = new DateTime(2024, 7, 16, 16, 39, 15, 56, DateTimeKind.Local).AddTicks(2061)
+                            CreatedAt = new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5336)
                         },
                         new
                         {
                             AppCatalogueId = 3,
                             StoreUserId = 3,
-                            CreatedAt = new DateTime(2024, 7, 16, 16, 39, 15, 56, DateTimeKind.Local).AddTicks(2068)
+                            CreatedAt = new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5341)
                         },
                         new
                         {
                             AppCatalogueId = 4,
                             StoreUserId = 1,
-                            CreatedAt = new DateTime(2024, 7, 16, 16, 39, 15, 56, DateTimeKind.Local).AddTicks(2072)
+                            CreatedAt = new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5345)
                         },
                         new
                         {
                             AppCatalogueId = 5,
                             StoreUserId = 2,
-                            CreatedAt = new DateTime(2024, 7, 16, 16, 39, 15, 56, DateTimeKind.Local).AddTicks(2076)
+                            CreatedAt = new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5349)
                         },
                         new
                         {
                             AppCatalogueId = 6,
                             StoreUserId = 3,
-                            CreatedAt = new DateTime(2024, 7, 16, 16, 39, 15, 56, DateTimeKind.Local).AddTicks(2083)
+                            CreatedAt = new DateTime(2024, 7, 17, 11, 43, 29, 10, DateTimeKind.Local).AddTicks(5355)
                         });
                 });
 
@@ -277,6 +284,14 @@ namespace AppStoreManager.Migrations
                     b.Property<int>("StoreUserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NickName")
                         .IsRequired()
@@ -294,18 +309,24 @@ namespace AppStoreManager.Migrations
                         new
                         {
                             StoreUserId = 1,
+                            FullName = "Franco Antonio",
+                            Mail = "Francoxxx@gmail.com",
                             NickName = "Francoxxx",
                             Password = "Password1"
                         },
                         new
                         {
                             StoreUserId = 2,
+                            FullName = "Giorgio Cubetti",
+                            Mail = "GiorgioCubes@gmail.com",
                             NickName = "ReVlasta_official",
                             Password = "Password2"
                         },
                         new
                         {
                             StoreUserId = 3,
+                            FullName = "Meth Anfetamina",
+                            Mail = "Ladrogaaaaaa@gmail.com",
                             NickName = "non_mi_drogo_",
                             Password = "Password3"
                         });

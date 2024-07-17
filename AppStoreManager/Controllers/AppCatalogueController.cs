@@ -1,6 +1,5 @@
 ﻿using AppStoreManager.Data;
 using AppStoreManager.Entities;
-using AppStoreManager.Migrations;
 using AppStoreManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +47,10 @@ namespace AppStoreManager.Controllers
         {
             try
             {
+                if (app.Icon != null)
+                    System.IO.File.WriteAllBytes($"wwwroot/images/{app.IconPath}", app.Icon);
+                else
+                    app.IconPath = "default.png";
                 AppCatalogue newItem = new AppCatalogue()
                 {
                     AppCatalogueId = app.Id,
