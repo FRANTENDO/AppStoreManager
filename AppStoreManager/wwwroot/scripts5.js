@@ -18,28 +18,21 @@
                 Pass: password
             };
 
-            fetch('https://localhost:7207/api/StoreUser', {
+            fetch('https://localhost:7207/api/StoreUser/CheckUsername', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username: username })
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Errore durante la verifica dell\'username');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    // Se l'username è già in uso, mostra messaggio di errore
                     if (data.isUsernameTaken) {
                         registerResponse.innerHTML = `
                         <div class="alert alert-danger" role="alert">
                             Username già in uso. Scegli un altro username.
                         </div>`;
                     } else {
-                        // Se l'username non è già in uso, procedi con la registrazione
                         fetch('https://localhost:7207/api/StoreUser/Register', {
                             method: 'POST',
                             headers: {
@@ -54,7 +47,6 @@
                                 return response.json();
                             })
                             .then(data => {
-                                // Operazioni dopo la registrazione riuscita
                                 registerResponse.innerHTML = `
                             <div class="alert alert-success" role="alert">
                                 Registrazione completata con successo. Verrai reindirizzato alla pagina di accesso.

@@ -4,6 +4,9 @@ using AppStoreManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging; // Assicurati di usare il namespace corretto per ILogger
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace AppStoreManager.Controllers
 {
@@ -20,22 +23,48 @@ namespace AppStoreManager.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        // POST: api/StoreUser/CheckUsername
+        [HttpPost]
+        [Route("CheckUsername")]
+        public IActionResult CheckUsername([FromBody] string username)
         {
-            var result = _ctx.Users.ToList();
-            return Ok(result);
+            if (string.IsNullOrEmpty(username))
+            {
+                return BadRequest("Username non valido.");
+            }
+
+            var existingUser = _ctx.Users.FirstOrDefault(u => u.NickName == username);
+            if (existingUser != null)
+            {
+                return Ok(new { isUsernameTaken = true });
+            }
+
+            return Ok(new { isUsernameTaken = false });
         }
 
+
+        // POST: api/StoreUser/Register
         [HttpPost]
-        public IActionResult Post(StoreUserModel storeUser)
+        [Route("Register")]
+        public IActionResult Register([FromBody] StoreUserModel storeUser)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
-                storeUser.Id = 0;
+                // Check if username already exists
+                var existingUser = _ctx.Users.FirstOrDefault(u => u.NickName == storeUser.NickName);
+                if (existingUser != null)
+                {
+                    return Conflict(new { isUsernameTaken = true });
+                }
+
+                // Create new StoreUser entity and save to database
                 StoreUser newItem = new StoreUser()
                 {
-                    StoreUserId = storeUser.Id,
                     NickName = storeUser.NickName,
                     Password = storeUser.Pass,
                     FullName = storeUser.FullName,
@@ -43,17 +72,22 @@ namespace AppStoreManager.Controllers
                 };
 
                 _ctx.Users.Add(newItem);
-                if (_ctx.SaveChanges() > 0)
-                {
-                    return Ok("TUTTO A POSTO");
-                }
-                return BadRequest("CHE MI HAI MANDATO?!?");
+                _ctx.SaveChanges();
+
+                return Ok("Registrazione completata con successo");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, ex);
-                return StatusCode(StatusCodes.Status500InternalServerError, "OPS, MI SI è ROTTO IL SERVER");
+                _logger.LogError(ex, "Errore durante la registrazione");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Si è verificato un errore durante la registrazione: {ex.Message}");
             }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var result = _ctx.Users.ToList();
+            return Ok(result);
         }
 
         [HttpPut]
