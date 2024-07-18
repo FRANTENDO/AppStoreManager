@@ -44,9 +44,6 @@
                                 if (!response.ok) {
                                     throw new Error('Errore durante la registrazione');
                                 }
-                                return response.json();
-                            })
-                            .then(data => {
                                 registerResponse.innerHTML = `
                             <div class="alert alert-success" role="alert">
                                 Registrazione completata con successo. Verrai reindirizzato alla pagina di accesso.
